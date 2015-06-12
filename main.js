@@ -5,6 +5,7 @@ var Menu          = require('menu');
 var app           = require('app');
 var dialog        = require('dialog');
 var ipc           = require('ipc');
+var path          = require('path');
 var mkdirp        = require('mkdirp');
 var git           = require('./git');
 var mainWindow    = null;
@@ -22,9 +23,6 @@ var template = [{
   }]
 }];
 
-var projectsDir = path.join(process.env.HOME, 'Documents', 'heroku');
-mkdirp(projectsDir);
-
 app.on('window-all-closed', function onWindowAllClosed() {
   if (process.platform !== 'darwin') {
     app.quit();
@@ -32,22 +30,25 @@ app.on('window-all-closed', function onWindowAllClosed() {
 });
 
 app.on('ready', function onReady() {
-  mainWindow = new BrowserWindow({ width: 800, height: 600 });
+  var projectsDir = path.join(process.env.HOME, 'Documents', 'heroku');
+  mkdirp(projectsDir, function() {
+    mainWindow = new BrowserWindow({ width: 800, height: 600 });
 
-  var menu = Menu.buildFromTemplate(template);
-  Menu.setApplicationMenu(menu);
+    var menu = Menu.buildFromTemplate(template);
+    Menu.setApplicationMenu(menu);
 
-  delete mainWindow.module;
+    delete mainWindow.module;
 
-  if (process.env.ELECTRON_ENV === 'development') {
-    mainWindow.openDevTools();
-    mainWindow.loadUrl('http://localhost:5000');
-  } else {
-    mainWindow.loadUrl('file://' + __dirname + '/dist/index.html');
-  }
+    if (process.env.ELECTRON_ENV === 'development') {
+      mainWindow.openDevTools();
+      mainWindow.loadUrl('http://localhost:5000');
+    } else {
+      mainWindow.loadUrl('file://' + __dirname + '/dist/index.html');
+    }
 
-  mainWindow.on('closed', function onClosed() {
-    mainWindow = null;
+    mainWindow.on('closed', function onClosed() {
+      mainWindow = null;
+    });
   });
 });
 
