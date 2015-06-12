@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Helvetica, sans-serif;
+  font-size: 12px;
+}
+
+.app-window {
+  display: flex;
+  height: 100vh;
+}
+
+.app-sidebar {
+  background: lightgray;
+  width: 300px;
+}
+
+.app-main {
+   flex: 1;
+}

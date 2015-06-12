@@ -1,10 +1,7 @@
-<h2 id="title">Welcome to Ember.js</h2>
+{{#x-sidebar}}
+  Sidebar
+{{/x-sidebar}}
 
-<h3>Recent Files</h3>
-<ul>
-  {{#each files as |file|}}
-    <li>{{file}}</li>
-  {{/each}}
-</ul>
-
-{{outlet}}
+{{#x-main}}
+  Main
+{{/x-main}}
