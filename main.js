@@ -5,6 +5,7 @@ var Menu          = require('menu');
 var app           = require('app');
 var dialog        = require('dialog');
 var ipc           = require('ipc');
+var mkdirp        = require('mkdirp');
 var git           = require('./git');
 var mainWindow    = null;
 
@@ -20,6 +21,9 @@ var template = [{
     }
   }]
 }];
+
+var projectsDir = path.join(process.env.HOME, 'Documents', 'heroku');
+mkdirp(projectsDir);
 
 app.on('window-all-closed', function onWindowAllClosed() {
   if (process.platform !== 'darwin') {
