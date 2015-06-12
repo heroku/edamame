@@ -14,9 +14,20 @@ body {
 }
 
 .app-list__item {
-  padding: 20px;
+  padding: 10px 20px;
 }
 
 .app-list__item:not(:last-of-type) {
-  border-bottom: 1px solid lightgray;
+  border-bottom: 1px solid #E7E7EC;
+}
+
+.app-list__item__name {
+  color: #3F3F44;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.app-list__item__path {
+  color: #7D7D8E;
+  font-size: 11px;
 }
