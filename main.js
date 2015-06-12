@@ -32,7 +32,7 @@ app.on('window-all-closed', function onWindowAllClosed() {
 app.on('ready', function onReady() {
   var projectsDir = path.join(process.env.HOME, 'Documents', 'heroku');
   mkdirp(projectsDir, function() {
-    mainWindow = new BrowserWindow({ width: 800, height: 600 });
+    mainWindow = new BrowserWindow({ width: 420, height: 380 });
 
     var menu = Menu.buildFromTemplate(template);
     Menu.setApplicationMenu(menu);
