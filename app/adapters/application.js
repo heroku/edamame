@@ -1,6 +1,6 @@
 import DS from 'ember-data';
 
-const {spawnSync} = requireNode('child_process');
+const {spawnSync} = window.requireNode('child_process');
 const token = spawnSync('heroku', ['auth:token']).output[1].toString().replace('\n', '');
 
 export default DS.RESTAdapter.extend({

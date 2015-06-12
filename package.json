@@ -31,5 +31,8 @@
     "dev": "nf start",
     "start": "ember server",
     "test": "ember test"
+  },
+  "dependencies": {
+    "mkdirp": "^0.5.1"
   }
 }

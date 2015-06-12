@@ -4,6 +4,8 @@ var BrowserWindow = require('browser-window');
 var Menu          = require('menu');
 var app           = require('app');
 var dialog        = require('dialog');
+var ipc           = require('ipc');
+var git           = require('./git');
 var mainWindow    = null;
 
 var template = [{
@@ -42,6 +44,17 @@ app.on('ready', function onReady() {
 
   mainWindow.on('closed', function onClosed() {
     mainWindow = null;
+  });
+});
+
+ipc.on('git-pull', function(event, data) {
+  git.clone(data.name, function(err, dir) {
+    if (err) {/* oh noes */}
+
+    event.sender.send('git-pull:success', JSON.stringify({
+      name: data.name,
+      dir: dir
+    }));
   });
 });
 
