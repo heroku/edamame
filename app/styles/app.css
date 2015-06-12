@@ -10,15 +10,13 @@ body {
 }
 
 .app-window {
-  display: flex;
   height: 100vh;
 }
 
-.app-sidebar {
-  background: lightgray;
-  width: 300px;
+.app-list__item {
+  padding: 20px;
 }
 
-.app-main {
-   flex: 1;
+.app-list__item:not(:last-of-type) {
+  border-bottom: 1px solid lightgray;
 }
