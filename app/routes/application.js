@@ -2,6 +2,10 @@ import Ember from 'ember';
 import IPCListener from '../lib/ipc-listener';
 
 export default Ember.Route.extend({
+  model() {
+    return this.store.find('app', 'dashboard');
+  },
+
   initializeIPCListener: function initializeIPCListener() {
     const ipcListener = IPCListener.create();
     ipcListener.addListener('filesOpened', this.filesOpened.bind(this));
