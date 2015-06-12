@@ -52,11 +52,11 @@ app.on('ready', function onReady() {
   });
 });
 
-ipc.on('git-pull', function(event, data) {
+ipc.on('git-clone', function(event, data) {
   git.clone(data.name, function(err, dir) {
     if (err) {/* oh noes */}
 
-    event.sender.send('git-pull:success', JSON.stringify({
+    event.sender.send('git-clone:success', JSON.stringify({
       name: data.name,
       dir: dir
     }));

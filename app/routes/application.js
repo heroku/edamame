@@ -5,14 +5,12 @@ const ipc = IPCListener.create();
 export default Ember.Route.extend({
   actions: {
     gitClone(opts) {
-      // OPTS requires url and name
-      // TODO: clone vs pull
-      ipc.send('git-pull', {
+      ipc.send('git-clone', {
         name: 'pure-anchorage-9855',
         url: 'git@heroku.com:pure-anchorage-9855.git'
       });
 
-      ipc.on('git-pull:success', (data) => {
+      ipc.on('git-clone:success', (data) => {
         console.log(data);
       });
     }
