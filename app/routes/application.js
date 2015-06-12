@@ -19,6 +19,14 @@ export default Ember.Route.extend({
       ipc.on('git-pull:success', (data) => {
         console.log(data);
       });
+    },
+
+    gitPush(opts) {
+      ipc.send('git-push', opts);
+
+      ipc.on('git-push:success', (data) => {
+        console.log(data);
+      });
     }
   },
 });

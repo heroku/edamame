@@ -64,12 +64,23 @@ ipc.on('git-clone', function(event, data) {
 });
 
 ipc.on('git-pull', function(event, data) {
-  console.log(data);
   git.pull(data.dir, function(err, dir) {
     var success = true;
     if (err) { success = false; }
 
     event.sender.send('git-pull:success', JSON.stringify({
+      success: success,
+      dir: dir
+    }));
+  });
+});
+
+ipc.on('git-push', function(event, data) {
+  git.push(data.dir, function(err, dir) {
+    var success = true;
+    if (err) { success = false; }
+
+    event.sender.send('git-push:success', JSON.stringify({
       success: success,
       dir: dir
     }));

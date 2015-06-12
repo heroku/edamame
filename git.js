@@ -15,17 +15,36 @@ function pull(dir, cb) {
     if (code > 0) {
       cb(true);
     } else {
-      cb(null, projectsDir);
+      cb(null, dir);
     }
   });
 
   pull.on('error', cb);
 }
 
+function push(dir, cb) {
+  var push = spawn('git', ['push', 'heroku', 'master'], {
+    cwd: dir
+  });
+
+  push.stdout.pipe(process.stdout);
+  push.stderr.pipe(process.stderr);
+
+  push.on('close', function(code) {
+    if (code > 0) {
+      cb(true);
+    } else {
+      cb(null, dir);
+    }
+  });
+
+  push.on('error', cb);
+}
+
 function clone(appName, cb) {
   var url = 'https://git.heroku.com/' + appName + '.git';
 
-  var clone = spawn('git', ['clone', url], {
+  var clone = spawn('git', ['clone', url, '--origin', 'heroku'], {
     cwd: projectsDir
   });
 
