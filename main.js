@@ -63,6 +63,19 @@ ipc.on('git-clone', function(event, data) {
   });
 });
 
+ipc.on('git-pull', function(event, data) {
+  console.log(data);
+  git.pull(data.dir, function(err, dir) {
+    var success = true;
+    if (err) { success = false; }
+
+    event.sender.send('git-pull:success', JSON.stringify({
+      success: success,
+      dir: dir
+    }));
+  });
+});
+
 function onFileOpen(files) {
   if (files && files.length) {
       mainWindow.webContents.send('filesOpened', JSON.stringify(files));

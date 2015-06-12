@@ -3,8 +3,23 @@ var path   = require('path');
 
 var projectsDir = path.join(process.env.HOME, 'Documents', 'heroku');
 
-function pull(dir) {
+function pull(dir, cb) {
+  var pull = spawn('git', ['pull'], {
+    cwd: dir
+  });
 
+  pull.stdout.pipe(process.stdout);
+  pull.stderr.pipe(process.stderr);
+
+  pull.on('close', function(code) {
+    if (code > 0) {
+      cb(true);
+    } else {
+      cb(null, projectsDir);
+    }
+  });
+
+  pull.on('error', cb);
 }
 
 function clone(appName, cb) {
@@ -17,11 +32,11 @@ function clone(appName, cb) {
   clone.stdout.pipe(process.stdout);
   clone.stderr.pipe(process.stderr);
 
-  clone.on('exit', function() {
+  clone.on('close', function() {
     cb(null, projectsDir);
   });
 
   clone.on('error', cb);
 }
 
-module.exports = { clone };
+module.exports = { clone, pull };
