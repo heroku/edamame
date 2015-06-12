@@ -1,2 +1,12 @@
-<div class="app-list__item__name">{{app.name}}</div>
-<div class="app-list__item__path">~/Code/{{app.name}}</div>
+{{#el-layout elLayout='horizontal' elAlign='center'}}
+  {{#el-layout elFlex='1'}}
+    <div class="app-list__item__name">{{app.name}}</div>
+    <div class="app-list__item__path">~/Code/{{app.name}}</div>
+  {{/el-layout}}
+
+  <div>
+    <button>Pull</button>
+    <button>Deploy</button>
+    <button>Run</button>
+  </div>
+{{/el-layout}}
