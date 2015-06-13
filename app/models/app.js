@@ -45,7 +45,7 @@ export default DS.Model.extend({
   watchDirtyState: function() {
     if (this.get('isWatchingGitStatus')) { return; }
 
-    fs.watch(this.get('dir'), () => this.notifyPropertyChange('isDirty'));
+    fs.watch(this.get('dir'), { recursive: true } () => this.notifyPropertyChange('isDirty'));
     this.set('isWatchingGitStatus', true);
   },
 
