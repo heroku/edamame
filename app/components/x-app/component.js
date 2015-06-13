@@ -14,6 +14,10 @@ export default Ember.Component.extend({
 
     gitPush: function() {
       this.sendAction('gitPush', { name: this.get('app.name') });
+    },
+
+    open: function() {
+      this.sendAction('open', { name: this.get('app.name') });
     }
   }
 });

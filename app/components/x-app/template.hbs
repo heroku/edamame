@@ -6,6 +6,8 @@
 
   <div>
     {{#if app.isCloned}}
+      <button {{action 'open'}}>Open</button>
+
       <button {{action 'gitPull'}}>Pull</button>
 
       {{#if app.isDirty}}
