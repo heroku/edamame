@@ -10,7 +10,7 @@
       <button>Deploy</button>
       <button>Run</button>
     {{else}}
-      <button>Clone</button>
+      <button {{action 'gitClone'}}>Clone</button>
     {{/if}}
   </div>
 {{/el-layout}}
