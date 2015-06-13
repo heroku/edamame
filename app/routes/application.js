@@ -27,6 +27,14 @@ export default Ember.Route.extend({
       ipc.on('git-push:success', (data) => {
         console.log(data);
       });
+    },
+
+    open(opts) {
+      ipc.send('open', opts);
+
+      ipc.on('open:success', (data) => {
+        console.log(data);
+      });
     }
   },
 });

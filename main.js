@@ -8,6 +8,7 @@ var ipc           = require('ipc');
 var path          = require('path');
 var mkdirp        = require('mkdirp');
 var git           = require('./git');
+var spawn         = require('child_process').spawn;
 var mainWindow    = null;
 
 var template = [{
@@ -83,6 +84,23 @@ ipc.on('git-push', function(event, data) {
     event.sender.send('git-push:success', JSON.stringify({
       success: success,
       dir: dir
+    }));
+  });
+});
+
+ipc.on('open', function(event, data) {
+  var editor = process.env.EDITOR;
+  var open = spawn(editor, [data.dir]);
+
+  open.stdout.pipe(process.stdout);
+  open.stderr.pipe(process.stderr);
+
+  open.on('close', function(code) {
+    if (code > 0) { return; }
+
+    event.sender.send('open:success', JSON.stringify({
+      success: true,
+      dir: data.dir
     }));
   });
 });
