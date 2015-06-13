@@ -6,6 +6,14 @@ export default Ember.Component.extend({
   actions: {
     gitClone: function() {
       this.sendAction('gitClone', { name: this.get('app.name') });
+    },
+
+    gitPull: function() {
+      this.sendAction('gitPull', { name: this.get('app.name') });
+    },
+
+    gitPush: function() {
+      this.sendAction('gitPush', { name: this.get('app.name') });
     }
   }
 });

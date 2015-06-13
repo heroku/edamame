@@ -6,9 +6,11 @@
 
   <div>
     {{#if app.isCloned}}
-      <button>Pull</button>
-      <button>Deploy</button>
-      <button>Run</button>
+      <button {{action 'gitPull'}}>Pull</button>
+
+      {{#if app.isDirty}}
+        <button {{action 'gitPush'}}>Deploy</button>
+      {{/if}}
     {{else}}
       <button {{action 'gitClone'}}>Clone</button>
     {{/if}}
