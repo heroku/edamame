@@ -4,8 +4,8 @@ export default Ember.Component.extend({
   classNames: ['app-list'],
 
   actions: {
-    gitClone: function() {
-      this.sendAction('gitClone');
+    gitClone: function(opts) {
+      this.sendAction('gitClone', opts);
     }
   }
 });
