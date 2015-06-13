@@ -25,9 +25,16 @@ body {
   color: #3F3F44;
   font-size: 13px;
   margin-bottom: 4px;
+  opacity: 0.5;
 }
 
 .app-list__item__path {
   color: #7D7D8E;
   font-size: 11px;
+  opacity: 0.5;
+}
+
+.app-list__item--is-cloned .app-list__item__name,
+.app-list__item--is-cloned .app-list__item__path {
+  opacity: 1;
 }

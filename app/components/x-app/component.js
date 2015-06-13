@@ -2,6 +2,7 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
   classNames: ['app-list__item'],
+  classNameBindings: ['app.isCloned:app-list__item--is-cloned'],
 
   actions: {
     gitClone: function() {
