@@ -17,7 +17,7 @@ export default Ember.Component.extend({
     },
 
     open: function() {
-      this.sendAction('open', { name: this.get('app.name') });
+      this.sendAction('open', { dir: this.get('app.dir') });
     }
   }
 });
