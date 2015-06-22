@@ -1,1 +1,4 @@
-{{app-list apps=model gitClone='gitClone' gitPull='gitPull' gitPush='gitPush' open='open'}}
+{{app-list apps=model gitClone=(action 'gitClone')
+                      gitPull=(action 'gitPull')
+                      gitPush=(action 'gitPush')
+                      open=(action 'open')}}
